@@ -16,11 +16,6 @@
             "words": "利用这次难得的机会系统学习javascript和前端知识，向着全栈的目标前进"
         },
         {
-            "avatar": "https://ws3.sinaimg.cn/large/006tKfTcly1fj7xh5emo8j30f10he48j.jpg",
-            "name": "赵睿",
-            "words": "争取用更少的代码，实现更多的事💪"
-        },
-        {
             "avatar": "https://ws1.sinaimg.cn/large/006tKfTcgy1fikl7frqgvj30hs0hsglv.jpg",
             "name": "正在学Ruby On Rails。Javascript看着很强大，到哪都能遇到它。接触的时候有种很神奇的感觉。"
         },
@@ -635,6 +630,11 @@
             "words": "希望我能从中发现很多好玩有趣的事情！"
         },
         {
+            "avatar": "https://ws3.sinaimg.cn/large/006tKfTcly1fj7xh5emo8j30f10he48j.jpg",
+            "name": "赵睿",
+            "words": "争取用更少的代码，实现更多的事💪"
+        },
+        {
             "avatar": "http://h.hiphotos.baidu.com/image/pic/item/71cf3bc79f3df8dc46979b75c711728b461028af.jpg",
             "name": "赵晓昕",
             "words": "补作业中，看了笑来老师的《人人都是工程师》感觉学习编程好像也没有很难，遇到任务，不断拆分，一步一步跟着走就能入门。以前学过VB，VF，都是皮毛。这次想认真学习一下。还有就是，会编程可以减少很多重复的工作，可以变得更牛，编程的世界有很多牛人和很多牛的做事方法做事思维，也可以提高自己。一个人对着电脑，按照老师的提示一步步前进，遇到困难的时候想想这么多同学已经做过了。他们能做到，我相信自己也可以，就这样一步一步走来。做了很多以前没有做过的事情，黑暗里走了这么久，解决了这么多困难，感觉以后再遇到什么没有解决的事情，也没什么好怕的了。感谢老师，带着我们一路前行"
@@ -684,6 +684,7 @@
             "name": "Eugene",
             "words": "相信未来不懂编程就像以前的文盲，想活在未来。"
         }
-    ];
-    this.words = words;
+    ]
+
+    global.words = words;
 })(this)
