@@ -1,5 +1,5 @@
 (function(global){
-    var words = [
+  var words = [
         {
             "avatar": "http://tva2.sinaimg.cn/crop.558.0.1143.1143.180/670e76acgw1ehgchgijn2j21kw0vyqrf.jpg",
             "name": "Andrea",
@@ -685,6 +685,5 @@
             "words": "相信未来不懂编程就像以前的文盲，想活在未来。"
         }
     ]
-
-    global.words = words;
+  global.words = words;
 })(this)

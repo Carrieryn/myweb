@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./public/style.css">
   <script src="./public/vue.min.js"></script>
   <script src="./public/data.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -20,28 +21,61 @@
       </div>
     </div>
     <div class="container">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">我的心里话</h3>
-          </div>
-          <div class="panel-body">
-            <div class="words-pannel" v-for="item in wordsList">
-              <div class="media">
-                <div class="media-left">
-                  <a href="#">
-                    <img class="media-object avatar" v-bind:src="item.avatar" alt="...">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">
-                    {{ item.name }}
-                  </h4>
-                    {{ item.words }}
+        <div class="row">
+          <div class="col-md-8">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">我的心里话</h3>
+              </div>
+              <div class="panel-body">
+                <div class="words-pannel" v-for="item in wordsList">
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object avatar" v-bind:src="item.avatar" alt="...">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">
+                        {{ item.name }}
+                      </h4>
+                        {{ item.words }}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-      </div>
+          <div class="col-md-4">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  有话对老师说
+                </h3>
+              </div>
+              <div class="panel-body">
+                <form name="myform">
+                  <div class="form-group">
+                    <label for="name">你的名字</label>
+                    <input type="name" class="form-control" v-model="nameString" id="name" placeholder="请输入你的姓名">
+
+                  </div>
+                  <div class="form-group">
+                    <label for="account">你注册新生大学的账号</label>
+                    <input type="account" class="form-control" v-model="accountString" id="account" placeholder="注册时使用的手机号或者email">
+
+                  </div>
+                  <div class="form-group">
+                    <label for="text">你想对老师说的真心话</label>
+                    <textarea type="text" class="form-control"  v-model="contentText" id="content" placeholder="我想说..."></textarea  >
+
+                  </div>
+                  <div class="btn btn-default" v-on:click="sendData">发送给老师</div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 </body>
@@ -51,11 +85,42 @@
   // vue官网： https://cn.vuejs.org/v2/guide/
   // 初始化Vue
 
-  new Vue({
+  var app = new Vue({
     el: '#app',   // #app 和html中div#id的 app 对应
     data: {
-      wordsList: words  // 变量wordsList可以在html使用
+      wordsList: [], // 变量wordsList可以在html使用
+      nameString: '',
+      accountString: '',
+      contentText: ''
+    },
+    methods: {
+      fetchData: function() {
+        axios.get('https://js.xinshengdaxue.com/api/v1/learnJS/course/1/words')
+          .then(function (response) {
+            app.wordsList = response.data.words;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+
+      sendData: function() {
+
+        axios.post('https://js.xinshengdaxue.com/api/v1/learnJS/sayToMe', {
+          name: app.nameString, // 你的名字（你要交第九次作业？一定要和前面交作业用的名字一样哟，否则我没办法统计你的作业次数）
+          account: app.accountString, // 你注册新生大学的账号
+          content: app.contentText // 你想对老师说的真心话
+        })
+        .then(function (response) {
+          alert(response.data.code);
+          document.myform.reset(); //提交网页后刷新
+        })
+        .catch(function (error) {
+          alert(error);
+        });
+      }
     }
   });
 
+  app.fetchData();
 </script>
